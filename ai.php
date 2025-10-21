@@ -2,7 +2,11 @@
 header('Content-Type: application/json');
 
 // 🔑 Gemini API key
+<<<<<<< HEAD
 $apiKey = ''; 
+=======
+$apiKey = 'YOUR_GOOGLE_CLOUD_API_KEY_HERE'; 
+>>>>>>> cbb4cc2 (Lemitize chatbot for Beautix)
 
 // ✅ Model
 $model = 'gemini-2.5-flash';
