@@ -1,26 +1,46 @@
 <?php
 header('Content-Type: application/json');
 
-// 🔑 Replace with your Gemini API key
+// 🔑 Gemini API key
 $apiKey = ''; 
 
-// ✅ Correct model name + API version
+// ✅ Model
 $model = 'gemini-2.5-flash';
 $url = "https://generativelanguage.googleapis.com/v1/models/$model:generateContent?key=$apiKey";
 
-// 🔹 Read user message (from frontend POST)
+// 🔹 Read user message
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
-$userMessage = $data['user_message'] ?? 'Hello!';
+$userMessage = trim($data['user_message'] ?? '');
 
-// 🔹 Prepare JSON payload
+// 🧠 System Prompt
+$systemPrompt = "
+You are Beautix Salon’s official AI assistant.
+Beautix offers services including:
+- Hair Cut & Styling
+- Facial & Body Care
+- Massages
+
+Rules:
+1. You can greet users, answer questions, and help them book or learn about Beautix services.
+2. If someone greets you (like 'hi', 'hello', etc.), reply politely and invite them to ask about Beautix services.
+3. Only discuss topics related to beauty, grooming, spa, and salon care.
+4. If someone asks anything unrelated (like coding, politics, or random stuff), respond with:
+   'I can only help you with Beautix salon services like hair cuts, facials, and massages.'
+5. Maintain a friendly, warm, and professional salon tone.
+";
+
+// 🔹 Combine system prompt with user input
+$fullPrompt = $systemPrompt . "\n\nCustomer: " . $userMessage;
+
+// 🔹 Create request payload
 $payload = json_encode([
     'contents' => [
-        ['parts' => [['text' => $userMessage]]]
+        ['parts' => [['text' => $fullPrompt]]]
     ]
 ]);
 
-// 🔹 Setup cURL
+// 🔹 Send to Gemini API
 $ch = curl_init($url);
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -41,7 +61,7 @@ curl_close($ch);
 // 🔹 Handle API response
 if ($httpCode === 200) {
     $data = json_decode($response, true);
-    $botMsg = $data['candidates'][0]['content']['parts'][0]['text'] ?? 'No text response.';
+    $botMsg = $data['candidates'][0]['content']['parts'][0]['text'] ?? 'No response.';
     echo json_encode(['success' => true, 'bot_message' => $botMsg]);
 } else {
     echo json_encode(['success' => false, 'error' => "HTTP $httpCode", 'response' => $response]);
