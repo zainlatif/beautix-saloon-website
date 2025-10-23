@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <title>BeautySpot</title>
+    <title>Beautix</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -46,7 +46,7 @@
 
             <div class="col-3 ">
               <div class="site-logo">
-                <a href="index.php"> BeautySpot </a> 
+                <a href="index.php"> Beautix </a> 
               </div>
             </div>
 

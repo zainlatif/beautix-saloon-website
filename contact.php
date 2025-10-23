@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <title>BeautySpot</title>
+    <title>Beautix</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -46,7 +46,7 @@
 
     <div class="col-3 ">
       <div class="site-logo">
-        <a href="index.php"> BeautySpot</a> 
+        <a href="index.php"> Beautix</a> 
       </div>
     </div>
 
@@ -126,7 +126,7 @@
               <ul class="list-unstyled footer-link">
                 <li class="d-block mb-3">
                   <span class="d-block text-black">Address:</span>
-                  <span>34 Street Name, City Name Here, United States</span></li>
+                  <span>34 Street Name, City Name Here, Pakistan</span></li>
                 <li class="d-block mb-3"><span class="d-block text-black">Phone:</span><span>+1 242 4942 290</span></li>
                 <li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>info@yourdomain.com</span></li>
               </ul>

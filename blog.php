@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <title>Barberz &mdash; Website Template by Colorlib</title>
+    <title>Beautix &mdash; Website Template by Colorlib</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -46,7 +46,7 @@
 
             <div class="col-3 ">
               <div class="site-logo">
-                <a href="index.html">Barberz</a>
+                <a href="index.html">Beautix</a>
               </div>
             </div>
 

@@ -18,7 +18,7 @@
 <html lang="en">
 
   <head>
-    <title>BeautySpot</title>
+    <title>Beautix</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -62,7 +62,7 @@
 
             <div class="col-3 ">
               <div class="site-logo">
-                <a href="index.html">BeautySpot</a>
+                <a href="index.html">Beautix</a>
               </div>
             </div>
 
@@ -246,127 +246,7 @@
     <script src="js/aos.js"></script>
 
     <script src="js/main.js"></script>
-
-      <!-- Gemini Chatbot Widget Start -->
-      <style>
-        #gemini-chatbot-btn {
-          position: fixed;
-          bottom: 30px;
-          right: 30px;
-          z-index: 9999;
-          background: #007bff;
-          color: #fff;
-          border: none;
-          border-radius: 50%;
-          width: 60px;
-          height: 60px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-          font-size: 30px;
-          cursor: pointer;
-        }
-        #gemini-chatbot-window {
-          display: none;
-          position: fixed;
-          bottom: 100px;
-          right: 30px;
-          width: 320px;
-          max-height: 420px;
-          background: #fff;
-          border-radius: 10px;
-          box-shadow: 0 2px 16px rgba(0,0,0,0.25);
-          z-index: 10000;
-          flex-direction: column;
-          overflow: hidden;
-        }
-        #gemini-chatbot-header {
-          background: #007bff;
-          color: #fff;
-          padding: 10px;
-          font-weight: bold;
-          text-align: center;
-        }
-        #gemini-chatbot-messages {
-          padding: 10px;
-          height: 250px;
-          overflow-y: auto;
-          font-size: 15px;
-          background: #f8f9fa;
-        }
-        #gemini-chatbot-input {
-          display: flex;
-          border-top: 1px solid #eee;
-        }
-        #gemini-chatbot-input input {
-          flex: 1;
-          border: none;
-          padding: 10px;
-          font-size: 15px;
-          outline: none;
-        }
-        #gemini-chatbot-input button {
-          background: #007bff;
-          color: #fff;
-          border: none;
-          padding: 0 18px;
-          cursor: pointer;
-        }
       </style>
-      <button id="gemini-chatbot-btn" title="Chat with us">💬</button>
-      <div id="gemini-chatbot-window">
-        <div id="gemini-chatbot-header">Barber AI Chat</div>
-        <div id="gemini-chatbot-messages"></div>
-        <form id="gemini-chatbot-input">
-          <input type="text" placeholder="Ask me anything..." autocomplete="off" required />
-          <button type="submit">Send</button>
-        </form>
-      </div>
-      <script>
-        // Show/hide chat window
-        const btn = document.getElementById('gemini-chatbot-btn');
-        const win = document.getElementById('gemini-chatbot-window');
-        btn.onclick = () => win.style.display = win.style.display === 'block' ? 'none' : 'block';
-        // Close chat on outside click
-        document.addEventListener('click', function(e) {
-          if (!win.contains(e.target) && e.target !== btn) win.style.display = 'none';
-        });
-        // Chat logic
-        const form = document.getElementById('gemini-chatbot-input');
-        const input = form.querySelector('input');
-        const messages = document.getElementById('gemini-chatbot-messages');
-        function appendMsg(text, from) {
-          const div = document.createElement('div');
-          div.style.margin = '8px 0';
-          div.style.textAlign = from === 'user' ? 'right' : 'left';
-          div.innerHTML = `<span style="background:${from==='user'?'#007bff':'#e9ecef'};color:${from==='user'?'#fff':'#222'};padding:6px 12px;border-radius:16px;display:inline-block;max-width:80%;">${text}</span>`;
-          messages.appendChild(div);
-          messages.scrollTop = messages.scrollHeight;
-        }
-        form.onsubmit = async function(e) {
-          e.preventDefault();
-          const userMsg = input.value.trim();
-          if (!userMsg) return;
-          appendMsg(userMsg, 'user');
-          input.value = '';
-          appendMsg('...', 'bot');
-          try {
-            const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAzk5JPPJoez8MjKDR4deMnaxbMsesN7JY', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                contents: [{ parts: [{ text: userMsg }] }]
-              })
-            });
-            const data = await res.json();
-            messages.lastChild.remove();
-            let botMsg = (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0].text) || 'Sorry, I could not understand.';
-            appendMsg(botMsg, 'bot');
-          } catch (err) {
-            messages.lastChild.remove();
-            appendMsg('Error connecting to AI.', 'bot');
-          }
-        };
-      </script>
-      <!-- Gemini Chatbot Widget End -->
   </body>
 
 </html>
